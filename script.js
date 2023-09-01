@@ -141,9 +141,9 @@ function toggleFocus() {
 }
 
 function checkWin() {
-  if (JSON.stringify(boardState) == JSON.stringify(winState)) {
+  //if (JSON.stringify(boardState) == JSON.stringify(winState)) {
     //alert("You win!");
     var myModal = new bootstrap.Modal(document.getElementById("win-modal"));
     myModal.toggle();
-  }
+  //}
 }
