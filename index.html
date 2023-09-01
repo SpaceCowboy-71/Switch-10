@@ -17,28 +17,30 @@
   </head>
   <body>
     <div class="container my-5">
-      <h1 class="text-white">Switch-10</h1>
-      <h5 class="text-white"><i>Can you solve this riddle?</i></h5>
+      <div id="text-box">
+        <h1 class="text-white">Switch-10</h1>
+        <h5 class="text-white"><i>Can you solve this riddle?</i></h5>
 
-      <div class="text-white">
-        <p>
-          There are 11 slots and 10 tokens (5 in each color, placed on opposite
-          sides).<br />
-          The goal is to switch places between the two colors. <br />
-          You can click on a token to move it towards the opposite side. <br />
-        </p>
-        <p>The rules:</p>
-        <ol type="1">
-          <li>
-            Each token is only allowed to move forward (i.e., the opposite
-            direction).
-          </li>
-          <li>
-            Each token can only move one slot at a time or jump over one peg.
-          </li>
-        </ol>
+        <div class="text-white">
+          <p>
+            There are 11 slots and 10 tokens (5 in each color, placed on
+            opposite sides).<br />
+            The goal is to switch places between the two colors. <br />
+            You can click on a token to move it towards the opposite side.
+            <br />
+          </p>
+          <p>The rules:</p>
+          <ol type="1">
+            <li>
+              Each token is only allowed to move forward (i.e., the opposite
+              direction).
+            </li>
+            <li>
+              Each token can only move one slot at a time or jump over one peg.
+            </li>
+          </ol>
+        </div>
       </div>
-
       <div id="board" class="btn-group"></div>
       <br />
 
@@ -46,6 +48,14 @@
         <button type="button" class="btn btn-light" onclick="location.reload()">
           <span class="bi-arrow-clockwise"></span>
           Restart
+        </button>
+        <button
+          id="btn-focus"
+          type="button"
+          class="btn btn-outline-light"
+          onclick="toggleFocus()"
+        >
+          <span class="bi-arrows-fullscreen"></span> WIP - Focus
         </button>
         <button
           id="btn-undo"
@@ -67,7 +77,7 @@
       </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="winModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="win-modal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -103,9 +113,10 @@
   </body>
 
   <script>
-    var board = document.getElementById("board");
+    // Define and initialize variables
     const colors = ["BlueViolet", "LightPink"];
     const bg_color = "transparent";
+    var board = document.getElementById("board");
     var boardState = [];
     for (var i = 0; i < 11; i++) {
       if (i < 5) {
@@ -127,6 +138,9 @@
       }
     }
     var boardStateHistory = [];
+    var focusMode = false;
+
+    // Initialize interface
     addHistory();
     initBoard();
     toggleUndoButton(false);
@@ -206,10 +220,25 @@
       }
     }
 
+    function toggleFocus() {
+      var textBox = document.getElementById("text-box");
+      if (focusMode) {
+        focusMode = false;
+        textBox.style.display = "block";
+        document.getElementById("btn-focus").classList.remove("btn-light");
+        document.getElementById("btn-focus").classList.add("btn-outline-light");
+      } else {
+        focusMode = true;
+        textBox.style.display = "none";
+        document.getElementById("btn-focus").classList.remove("btn-outline-light");
+        document.getElementById("btn-focus").classList.add("btn-light");
+      }
+    }
+
     function checkWin() {
       if (JSON.stringify(boardState) == JSON.stringify(winState)) {
         //alert("You win!");
-        var myModal = new bootstrap.Modal(document.getElementById("winModal"));
+        var myModal = new bootstrap.Modal(document.getElementById("win-modal"));
         myModal.toggle();
       }
     }
