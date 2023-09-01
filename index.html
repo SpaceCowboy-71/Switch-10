@@ -18,22 +18,23 @@
   <body>
     <div class="container my-5">
       <h1 class="text-white">Switch-10</h1>
+      <h5 class="text-white"><i>Can you solve this riddle?</i></h5>
 
       <div class="text-white">
         <p>
-          There are 11 slots and 10 tokens (5 in each color).<br />
-          Put 5 tokens from the same color on each side of the frame leaving the
-          middle hole empty. <br />
-          Goal: switch places between the two colors. You can click on a token
-          to move it to the opposite side. <br />
+          There are 11 slots and 10 tokens (5 in each color, placed on opposite
+          sides).<br />
+          The goal is to switch places between the two colors. <br />
+          You can click on a token to move it towards the opposite side. <br />
         </p>
         <p>The rules:</p>
         <ol type="1">
           <li>
-            Each color is only allowed to move forward (i.e., in one direction).
+            Each token is only allowed to move forward (i.e., the opposite
+            direction).
           </li>
           <li>
-            Each color can only move one slot at a time or jump over one peg.
+            Each token can only move one slot at a time or jump over one peg.
           </li>
         </ol>
       </div>
@@ -57,6 +58,14 @@
         </button>
       </div>
     </div>
+    <!-- Corner Button -->
+    <div id="corner-triangle">
+      <div class="corner-triangle-text text-capitalize">
+        <a href="https://github.com/SpaceCowboy-71" target="_blank"
+          ><span class="corner-triangle-firstline">My</span><br />GitHub!</a
+        >
+      </div>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="winModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog">
@@ -70,7 +79,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <<img src="images/Jigglypuff_SSB4.webp" alt="" />
+            <img src="images/Jigglypuff_SSB4.webp" alt="" />
           </div>
           <div class="modal-footer">
             <button
