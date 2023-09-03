@@ -43,7 +43,7 @@ function initWinState() {
 function initBoard() {
   for (var i = 0; i < 11; i++) {
     var slot = document.createElement("button");
-    slot.id = i;
+    slot.id = "slot-" + i;
     slot.className = "btn btn-outline-light slot";
     slot.onclick = function () {
       clickSlot(this);
@@ -56,7 +56,7 @@ function initBoard() {
 function updateBoard() {
   //console.log(boardState);
   for (var i = 0; i < 11; i++) {
-    var slot = document.getElementById(i);
+    var slot = document.getElementById("slot-" + i);
     slot.style.backgroundColor = boardState[i];
   }
   checkWin();
@@ -67,7 +67,8 @@ function clickSlot(slot) {
 }
 
 function moveToken(slot) {
-  var slotId = parseInt(slot.id);
+  // Use regex to get the number from the id <slot-#>
+  var slotId = parseInt(slot.id.replace(/\D/g, ""));
   var slotColor = boardState[slotId];
   var direction = slotColor == colors[0] ? 1 : -1;
   var nextSlot = slotId + direction;
@@ -125,6 +126,7 @@ function toggleUndoButton(enable) {
   }
 }
 
+// Focus mode - change styling by adding/removing classes
 function toggleFocus() {
   var textBox = document.getElementById("text-box");
   if (focusMode) {
@@ -132,11 +134,25 @@ function toggleFocus() {
     textBox.style.display = "block";
     document.getElementById("btn-focus").classList.remove("btn-light");
     document.getElementById("btn-focus").classList.add("btn-outline-light");
+    for (var i = 0; i < 11; i++) {
+      var slot = document.getElementById("slot-" + i);
+      slot.classList.remove("slot-focus");
+      slot.classList.add("slot");
+    }
+    document.getElementById("container").classList.remove("container-focus");
+    document.getElementById("container").classList.add("container");
   } else {
     focusMode = true;
     textBox.style.display = "none";
     document.getElementById("btn-focus").classList.remove("btn-outline-light");
     document.getElementById("btn-focus").classList.add("btn-light");
+    for (var i = 0; i < 11; i++) {
+      var slot = document.getElementById("slot-" + i);
+      slot.classList.remove("slot");
+      slot.classList.add("slot-focus");
+    }
+    document.getElementById("container").classList.remove("container");
+    document.getElementById("container").classList.add("container-focus");
   }
 }
 
