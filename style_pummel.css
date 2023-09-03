@@ -25,7 +25,6 @@ body {
 /* Container styling */
 .container {
   margin-top: 2em;
-  padding-bottom: 2em;
 }
 .container-focus {
   height: 100vh;
