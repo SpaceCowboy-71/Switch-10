@@ -25,12 +25,13 @@ body {
 /* Container styling */
 .container {
   margin-top: 2em;
+  padding-bottom: 2em;
 }
 .container-focus {
   height: 100vh;
   width: 100vw;
   text-align: center;
-  padding-top: 20vh;
+  padding-top: 25vh;
 }
 
 /* Token styling */
@@ -42,8 +43,8 @@ body {
     --bs-btn-focus-shadow-rgb: 0, 0, 0;
   }
 .slot-focus {
-  width: 8.5vw;
-  height: 8.5vw;
+  width: 8vw;
+  height: 8vw;
 }
 
   /* Force overwrite Bootstrap button styling */
